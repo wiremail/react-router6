@@ -14,16 +14,17 @@ import { Layout } from './components/Layout'
 
 import { GuardedRoute } from './hoc/GuardedRoute'
 import { AuthProvider } from './hoc/AuthProvider'
+import ErrorPage from './pages/Errorpage'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Layout />}>
+    <Route path='/' element={<Layout />} /*errorElement={<ErrorPage />}*/>
       <Route index element={<Homepage />} />
       <Route path='about' element={<Aboutpage />} >
         <Route path='contacts' element={<p>Our Contacts</p>} />
         <Route path='team' element={<p>Our Team</p>} />
       </Route>
-      <Route path='posts' element={<Blogpage />} loader={postsLoader} />
+      <Route path='posts' element={<Blogpage />} loader={postsLoader} errorElement={<ErrorPage />} />
       <Route path='posts/:id' element={<Postpage />} loader={postLoader} />
       <Route path='posts/:id/edit' element={
         <GuardedRoute>

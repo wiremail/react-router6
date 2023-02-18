@@ -51,11 +51,15 @@ const Blogpage = () => {
 
 async function getPosts() {
   const res: any = await fetch('https://jsonplaceholder.typicode.com/posts')
+
+  if (!res.ok) {
+    throw new Response('', { status: res.status, statusText: 'An error occured' })
+  }
+
   return res.json()
 }
 
-const postsLoader = (/*{ request, params }: any*/) => {
-  //console.log({ request, params })
+const postsLoader = () => {
   return defer({
     posts: getPosts()
   })
