@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useActionData, useLoaderData, useNavigation, useParams } from 'react-router-dom'
+import UpdatePost from '../components/UpdatePost'
 
 interface Post {
   userId: number,
@@ -11,6 +12,9 @@ interface Post {
 const Editpost = () => {
   const { id } = useParams()
   const [post, setPost] = useState<Post>()
+  const data: any = useActionData()
+  //const { post }: any = useLoaderData()
+  const navigation = useNavigation()
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
@@ -20,15 +24,33 @@ const Editpost = () => {
 
   return (
     <div>
+      {data?.message && <div style={{ color: 'green' }}>{data.message}</div>}
       <h1>Edit Post</h1>
-      {post && (
-        <>
-          <h1>{post.title}</h1>
-          <p>{post.body}</p>
-        </>
-      )}
+      <UpdatePost {...post} submitting={navigation.state === 'submitting'} />
     </div>
   )
 }
 
-export { Editpost }
+const updatePost = async (post: any) => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${post.get('id')}`, {
+    method: 'PUT',
+    body: post
+  })
+
+  return res.json()
+}
+
+const updatePostAction = async ({ request }: any) => {
+  const formData = await request.formData()
+
+  // Validation data
+  if (!formData.get('title') || !formData.get('body')) {
+    return { message: 'All fields are required' }
+  }
+
+  const updatedPost: any = await updatePost(formData)
+
+  return { message: `Post ${updatedPost.id} was successfully updated` }
+}
+
+export { Editpost, updatePostAction }

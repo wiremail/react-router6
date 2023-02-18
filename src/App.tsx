@@ -6,8 +6,8 @@ import { Aboutpage } from './pages/Aboutpage'
 import { Blogpage, postsLoader } from './pages/Blogpage'
 import { Notfoundpage } from './pages/Notfoundpage'
 import { postLoader, Postpage } from './pages/Postpage'
-import { Editpost } from './pages/Editpost'
-import { Createpost } from './pages/Createpost'
+import { Editpost, updatePostAction } from './pages/Editpost'
+import { Createpost, createPostAction } from './pages/Createpost'
 import { SigninPage } from './pages/Signinpage'
 
 import { Layout } from './components/Layout'
@@ -30,12 +30,12 @@ const router = createBrowserRouter(
         <GuardedRoute>
           <Editpost />
         </GuardedRoute>
-      } />
+      } /*loader={postLoader}*/ action={updatePostAction} />
       <Route path='posts/new' element={
         <GuardedRoute>
           <Createpost />
         </GuardedRoute>
-      } />
+      } action={createPostAction} />
       <Route path='signin' element={<SigninPage />} />
       <Route path='*' element={<Notfoundpage />} />
     </Route>
