@@ -2,13 +2,6 @@ import { useAuth } from '../hooks/useAuth'
 import { redirect, useNavigate, useNavigation } from 'react-router-dom'
 import NewPost from '../components/NewPost'
 
-interface Post {
-  userId: number,
-  id: number,
-  title: string,
-  body: string
-}
-
 const Createpost = () => {
   const { signout }: any = useAuth()
   const navigate = useNavigate()

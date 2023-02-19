@@ -1,13 +1,7 @@
 import { Suspense } from 'react'
 import { Await, defer, Link, useLoaderData, useSearchParams } from 'react-router-dom'
 import { PostsFilter } from '../components/PostsFilter'
-
-interface Post {
-  userId: number,
-  id: number,
-  title: string,
-  body: string
-}
+import { IPost } from '../types/data'
 
 const Blogpage = () => {
   const { posts }: any = useLoaderData()
@@ -31,11 +25,11 @@ const Blogpage = () => {
       <Suspense fallback={<h2>Loading...</h2>}>
         <Await resolve={posts}>
           {
-            (resolvedPosts): any => (<>
+            (resolvedPosts) => (<>
               {
                 resolvedPosts
-                  .filter((post: Post) => post.title.includes(postQuery) && post.id >= startsFrom)
-                  .map((post: Post) => (
+                  .filter((post: IPost) => post.title.includes(postQuery) && post.id >= startsFrom)
+                  .map((post: IPost) => (
                     <Link key={post.id} to={`/posts/${post.id}`}>
                       <li>{post.title}</li>
                     </Link>

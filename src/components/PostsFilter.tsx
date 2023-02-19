@@ -1,13 +1,18 @@
 import { useState } from 'react'
 
+type FormFields = {
+  search: HTMLInputElement,
+  latest: HTMLInputElement
+}
+
 const PostsFilter = ({ postQuery, latest, setSearchParams }: any) => {
   const [search, setSearch] = useState(postQuery)
   const [checked, setChecked] = useState(latest)
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement & FormFields> = (event) => {
     event.preventDefault()
 
-    const form = event.target
+    const form = event.currentTarget
     const query = form.search.value
     const isLatest = form.latest.checked
 

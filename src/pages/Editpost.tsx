@@ -1,17 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useActionData, useLoaderData, useNavigation, useParams } from 'react-router-dom'
 import UpdatePost from '../components/UpdatePost'
-
-interface Post {
-  userId: number,
-  id: number,
-  title: string,
-  body: string
-}
+import { IPost } from '../types/data'
 
 const Editpost = () => {
   const { id } = useParams()
-  const [post, setPost] = useState<Post>()
+  const [post, setPost] = useState<IPost>()
   const data: any = useActionData()
   //const { post }: any = useLoaderData()
   const navigation = useNavigation()

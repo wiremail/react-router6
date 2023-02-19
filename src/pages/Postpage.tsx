@@ -1,13 +1,6 @@
 import { Suspense } from 'react'
 import { Link, useLoaderData, useNavigate, Await, useAsyncValue, defer } from 'react-router-dom'
 
-// interface iPost {
-//   userId: number,
-//   id: number,
-//   title: string,
-//   body: string
-// }
-
 const Post = () => {
   const post: any = useAsyncValue()
   return (
