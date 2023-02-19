@@ -1,6 +1,7 @@
 import { Form } from "react-router-dom"
+import { IPostWithSubmitting } from '../types/data'
 
-const UpdatePost = ({ id, title, body, userId, submitting }: any) => {
+const UpdatePost = ({ id, userId, title, body, submitting }: IPostWithSubmitting) => {
   return (
     <Form method="post" action={`/posts/${id}/edit`}>
       <label>
@@ -13,7 +14,7 @@ const UpdatePost = ({ id, title, body, userId, submitting }: any) => {
       </label>
       <input type="hidden" name="userId" value={userId} />
       <input type="hidden" name="id" value={id} />
-      <input type="submit" value="UpdatePost" disabled={submitting} />
+      <input type="submit" value="Update Post" disabled={submitting} />
     </Form>
   )
 }

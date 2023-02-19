@@ -25,17 +25,19 @@ const Blogpage = () => {
       <Suspense fallback={<h2>Loading...</h2>}>
         <Await resolve={posts}>
           {
-            (resolvedPosts) => (<>
-              {
-                resolvedPosts
-                  .filter((post: IPost) => post.title.includes(postQuery) && post.id >= startsFrom)
-                  .map((post: IPost) => (
-                    <Link key={post.id} to={`/posts/${post.id}`}>
-                      <li>{post.title}</li>
-                    </Link>
-                  ))
-              }
-            </>)
+            (resolvedPosts) => (
+              <>
+                {
+                  resolvedPosts
+                    .filter((post: IPost) => post.title.includes(postQuery) && post.id >= startsFrom)
+                    .map((post: IPost) => (
+                      <Link key={post.id} to={`/posts/${post.id}`}>
+                        <li>{post.title}</li>
+                      </Link>
+                    ))
+                }
+              </>
+            )
           }
         </Await>
       </Suspense>
