@@ -30,7 +30,7 @@ const router = createBrowserRouter(
         <GuardedRoute>
           <Editpost />
         </GuardedRoute>
-      } /*loader={postLoader}*/ action={updatePostAction} />
+      } action={updatePostAction} />
       <Route path='posts/new' element={
         <GuardedRoute>
           <Createpost />

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useActionData, useLoaderData, useNavigation, useParams } from 'react-router-dom'
+import { useActionData, useNavigation, useParams } from 'react-router-dom'
 import UpdatePost from '../components/UpdatePost'
 import { IPost } from '../types/data'
 
@@ -7,14 +7,14 @@ const Editpost = () => {
   const { id } = useParams()
   const [post, setPost] = useState<IPost>()
   const data: any = useActionData()
-  //const { post }: any = useLoaderData()
+
   const navigation = useNavigation()
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then(res => res.json())
       .then(data => setPost(data))
-  }, [])
+  }, [id])
 
   return (
     <div>
