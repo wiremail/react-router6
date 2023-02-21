@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { useLoaderData, useNavigate, Await, useAsyncValue, defer, LoaderFunction } from 'react-router-dom'
+import { useLoaderData, useNavigate, Await, defer } from 'react-router-dom'
 import SinglePost from '../components/Post'
 import { CommentList } from '../components/CommentsList'
 
