@@ -5,6 +5,13 @@ export interface IPost {
   body: string
 }
 
-export interface IPostWithSubmitting extends IPost {
-  submitting: boolean
+// export interface IPostWithSubmitting extends IPost {
+//   submitting: boolean
+// }
+
+export interface IComment {
+  id: number
+  email: string
+  name: string
+  body: string
 }

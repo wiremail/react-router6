@@ -22,7 +22,7 @@ const Editpost = () => {
     <div>
       {data?.message && <div style={{ color: 'green' }}>{data.message}</div>}
       <h1>Edit Post</h1>
-      <UpdatePost {...post} submitting={navigation.state === 'submitting'} />
+      <UpdatePost post={post} submitting={navigation.state === 'submitting'} />
     </div>
   )
 }

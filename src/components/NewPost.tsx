@@ -1,6 +1,10 @@
 import { Form } from "react-router-dom"
 
-const NewPost = ({ submitting }: any) => {
+interface PostProps {
+  submitting: boolean
+}
+
+const NewPost = ({ submitting }: PostProps) => {
   return (
     <Form action='/posts/new' method="post">
       <label>

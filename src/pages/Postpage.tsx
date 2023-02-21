@@ -1,28 +1,16 @@
 import { Suspense } from 'react'
-import { Link, useLoaderData, useNavigate, Await, useAsyncValue, defer } from 'react-router-dom'
-
-const Post = () => {
-  const post: any = useAsyncValue()
-  return (
-    <>
-      <h1>{post.title}</h1>
-      <p>{post.body}</p>
-      <Link to={`/posts/${post.id}/edit`}>Edit this post</Link>
-    </>
-  )
-}
+import { useLoaderData, useNavigate, Await, useAsyncValue, defer } from 'react-router-dom'
+import SinglePost from '../components/Post'
+import Comment from '../components/Comment'
+import { IComment } from '../types/data'
 
 const Comments = () => {
   const comments: any = useAsyncValue()
   return (
     <>
       <h2>Comments</h2>{
-        comments.map((comment: any) => (
-          <div key={comment.id}>
-            <h3>{comment.email}</h3>
-            <h4>{comment.name}</h4>
-            <p>{comment.body}</p>
-          </div>
+        comments.map((comment: IComment) => (
+          <Comment {...comment} key={comment.id} />
         ))
       }
     </>
@@ -41,7 +29,7 @@ const Postpage = () => {
       <button onClick={goBack}>Go Back</button>
       <Suspense fallback={<h2>Post is loading...</h2>}>
         <Await resolve={post}>
-          <Post />
+          <SinglePost />
         </Await>
       </Suspense>
       <Suspense fallback={<h2>Comments is loading...</h2>}>
