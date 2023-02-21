@@ -29,7 +29,7 @@ const Blogpage = () => {
               <>
                 {
                   resolvedPosts
-                    .filter((post: IPost) => post.title.includes(postQuery) && post.id >= startsFrom)
+                    .filter((post: IPost) => post.title.includes(postQuery) && post?.id! >= startsFrom)
                     .map((post: IPost) => (
                       <Link key={post.id} to={`/posts/${post.id}`}>
                         <li>{post.title}</li>

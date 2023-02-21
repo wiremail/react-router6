@@ -1,7 +1,8 @@
 import { Link, useAsyncValue } from 'react-router-dom'
+import { IPost } from '../types/data'
 
 export default function SinglePost() {
-  const post: any = useAsyncValue()
+  const post: IPost = useAsyncValue() as IPost
   return (
     <>
       <h1>{post.title}</h1>
